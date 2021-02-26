@@ -34,6 +34,8 @@ export function ChallengesProvider({children}: ChallengesProviderProps){
 
     const [activeChallenge, setActiveChallenge] = useState(null)
 
+    const experienceToNextLevel = Math.pow((level +1) * 4,2)
+
     function levelUp(){
       setLevel(level + 1);
     }
@@ -59,6 +61,7 @@ export function ChallengesProvider({children}: ChallengesProviderProps){
              activeChallenge,
              resetChallenge,
              levelUp,
+             experienceToNextLevel,
              }}>
             {children}
         </ChallengesContext.Provider>
