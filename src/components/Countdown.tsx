@@ -6,8 +6,8 @@ let countdownTimeout: NodeJS.Timeout
 
 export function Countdown() {
 
-  const contextData = useContext(ChallengesContext);
-  console.log(contextData);
+  const {startNewChallenge} = useContext(ChallengesContext);
+  
 
   const [time, setTime] = useState(0.1 * 60); 
   const [isActive, setIsActive] = useState(false);
@@ -26,7 +26,7 @@ export function Countdown() {
   function resetCountdown() {
     clearTimeout(countdownTimeout);
     setIsActive(false);
-    setTime(0.1 * 60)
+    setTime(0.1 * 60);
   }
 
   useEffect(() => {
@@ -35,9 +35,9 @@ export function Countdown() {
         setTime(time - 1);
       }, 1000)
     }else if (isActive && time === 0) {
-      setHasFinished(true)
-      setIsActive(false)
-      
+      setHasFinished(true);
+      setIsActive(false);
+      startNewChallenge();      
     }
   }, [isActive, time])
 
